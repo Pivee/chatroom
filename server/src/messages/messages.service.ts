@@ -13,6 +13,7 @@ export class MessagesService {
       thread: 'TEST',
     },
   ];
+  clientToUsernameMapping = {};
 
   create(createMessageDto: CreateMessageDto) {
     return this.messages.push(createMessageDto);
@@ -20,5 +21,15 @@ export class MessagesService {
 
   findAll() {
     return this.messages;
+  }
+
+  joinChatroom(username: string, clientId: string) {
+    this.clientToUsernameMapping[clientId] = username;
+
+    return Object.values(this.clientToUsernameMapping);
+  }
+
+  getUsernameByClient(clientId: string) {
+    return this.clientToUsernameMapping[clientId];
   }
 }

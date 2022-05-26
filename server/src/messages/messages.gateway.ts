@@ -1,10 +1,11 @@
 import {
+  ConnectedSocket,
   MessageBody,
   SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets';
-import { Server } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 import { CreateMessageDto } from './dto/create-message.dto';
 import { MessagesService } from './messages.service';
 
@@ -34,8 +35,10 @@ export class MessagesGateway {
   }
 
   @SubscribeMessage('joinChatroom')
-  joinChatroom() {
-    // TODO:
+  joinChatroom(@MessageBody() payload: any, @ConnectedSocket() client: Socket) {
+    const { username } = payload;
+
+    return this.messagesService.joinChatroom(username, client.id);
   }
 
   @SubscribeMessage('showAsTyping')
