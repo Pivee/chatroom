@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Nest - Client</title>
+
+  <style>
+    * {
+      font-family: sans-serif;
+    }
+
+    .message-thread-container {
+      margin: 20px 10px;
+      display: flex;
+    }
+
+    .own-message {
+      color: red;
+      text-align: right;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <form action="#" onsubmit="return handleFormSubmitFunction(event)">
+      <center>
+        <table>
+          <tr>
+            <td align="right">
+              <label for="username">Username</label>
+            </td>
+            <td>
+              <input type="text" name="username" id="username" autocomplete="off">
+            </td>
+          </tr>
+          <tr>
+            <td align="right">
+              <label for="message">Message</label>
+            </td>
+            <td>
+              <input type="text" name="message" id="message" autocomplete="off">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="right">
+              <button onclick="handleSubmitNewMessage()">Submit</button>
+              <button type="reset">Clear</button>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </form>
+  </div>
+
+  <div class="message-thread-container">
+    <ul id="messages"></ul>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
+  <script src="./app.js"></script>
+</body>
+
+</html>
