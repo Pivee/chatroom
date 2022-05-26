@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { v4 as uuid } from 'uuid';
 import { CreateMessageDto } from './dto/create-message.dto';
 import { Message } from './entities/message.entity';
 
@@ -16,7 +17,14 @@ export class MessagesService {
   clientToUsernameMapping = {};
 
   create(createMessageDto: CreateMessageDto) {
-    return this.messages.push(createMessageDto);
+    const message: Message = {
+      id: uuid(),
+      ...createMessageDto,
+    };
+
+    this.messages.push(message);
+
+    return message;
   }
 
   findAll() {
