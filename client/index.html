@@ -14,11 +14,26 @@
 
     .message-thread-container {
       margin: 20px 10px;
-      display: flex;
+    }
+
+    #messages {
+      width: 100%;
+    }
+
+    .message-box {
+      width: 100%;
+      margin: 5px
+    }
+
+    .message-content {
+      width: fit-content;
+      width: -moz-fit-content;
+      padding: 10px;
+      border: 1px solid grey;
     }
 
     .own-message {
-      color: red;
+      background-color: lightgrey;
       text-align: right;
     }
   </style>
@@ -57,7 +72,7 @@
   </div>
 
   <div class="message-thread-container">
-    <ul id="messages"></ul>
+    <div id="messages"></div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>

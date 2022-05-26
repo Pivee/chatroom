@@ -34,11 +34,24 @@ function handleNewMessage(message) {
 }
 
 function buildNewMessage(message) {
-  const li = document.createElement("li");
+  const divMessageBox = document.createElement("div");
+  divMessageBox.className = "message-box";
 
-  li.appendChild(
+  const divMessage = document.createElement("div");
+  divMessage.className = "message-content";
+
+
+
+  if (message.from === socket.id) {
+    divMessageBox.style.cssText = "display: flex; justify-content: flex-end";
+    divMessage.classList.add("own-message");
+  }
+
+  divMessage.appendChild(
     document.createTextNode(`${message.content} - ${message.from}`)
   );
 
-  return li;
+  divMessageBox.appendChild(divMessage);
+
+  return divMessageBox;
 }
