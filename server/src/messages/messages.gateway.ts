@@ -42,7 +42,11 @@ export class MessagesGateway {
   }
 
   @SubscribeMessage('showAsTyping')
-  showAsTyping() {
-    // TODO:
+  showAsTyping(@MessageBody() payload: any, @ConnectedSocket() client: Socket) {
+    const { isTyping } = payload;
+
+    const username = this.messagesService.getUsernameByClient(client.id);
+
+    client.broadcast.emit('showAsTyping', { username, isTyping });
   }
 }
